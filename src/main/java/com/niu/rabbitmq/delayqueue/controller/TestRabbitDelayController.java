@@ -24,18 +24,18 @@ public class TestRabbitDelayController {
     public String sendDelay() {
         Order order1 = new Order();
         order1.setOrderStatus(0);
-        order1.setOrderId("123321123");
-        order1.setOrderName("波音747飞机");
+        order1.setOrderId("11111111");
+        order1.setOrderName("小米手机");
 
         Order order2 = new Order();
         order2.setOrderStatus(1);
-        order2.setOrderId("2345123123");
-        order2.setOrderName("豪华游艇");
+        order2.setOrderId("22222222");
+        order2.setOrderName("华为手机");
 
         Order order3 = new Order();
         order3.setOrderStatus(2);
-        order3.setOrderId("983676");
-        order3.setOrderName("小米alpan阿尔法");
+        order3.setOrderId("33333333");
+        order3.setOrderName("苹果手机");
 
         delaySender.sendDelay(order1);
         delaySender.sendDelay(order2);

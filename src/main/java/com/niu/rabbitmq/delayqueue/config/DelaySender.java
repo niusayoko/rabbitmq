@@ -27,12 +27,6 @@ public class DelaySender {
     /**
      * 发送订单消息到延迟队列
      *
-     * 这里声明的amqpTemplate接口，这个接口包含了发送和接收消息的一般操作，
-     * 换种说法，它不是某个实现所专有的，所以AMQP存在于名称里。
-     * 这个接口的实现与AMQP协议的实现紧密关联。
-     * this.amqpTemplate.convertAndSend的第一个参数为延迟交换机的名称，
-     * 第二个为延时消费routing-key，第三个参数为order操作对象，第四个参数为消息
-     *
      * @param order
      * @return void
      * @author niuqingsong
@@ -45,9 +39,11 @@ public class DelaySender {
          * 这里声明的amqpTemplate接口，这个接口包含了发送和接收消息的一般操作，
          * 换种说法，它不是某个实现所专有的，所以AMQP存在于名称里。
          * 这个接口的实现与AMQP协议的实现紧密关联。
-         * this.amqpTemplate.convertAndSend的第一个参数为延迟交换机的名称，
+         * this.amqpTemplate.convertAndSend
+         * 第一个参数为延迟交换机的名称，
          * 第二个为延时消费routing-key，
-         * 第三个参数为order操作对象，第四个参数为消息
+         * 第三个参数为order操作对象，
+         * 第四个参数为消息
          */
         amqpTemplate.convertAndSend(DelayRabbitConfig.ORDER_DELAY_EXCHANGE, DelayRabbitConfig.ORDER_DELAY_ROUTING_KEY, order, message -> {
             // 如果配置了

@@ -28,7 +28,7 @@ public class DelayReceiver {
      * 读取上面找出的所有方法上@RabbitListener注解中的值，并为每一个方法创建一个RabbitListenerEndpoint，保存在RabbitListenerEndpointRegistrar类中
      * 在所有的bean都初始化完成，即所有@RabbitListener注解的方法都创建了endpoint之后，由我们配置的RabbitListenerContainerFactory将每个endpoint创建MessageListenerContainer
      * 最后创建上面的MessageListenerContainer
-     * 此，全部完成，MessageListenerContainer启动后将能够接受到消息，再将消息交给它的MessageListener处理消息
+     * 至此，全部完成，MessageListenerContainer启动后将能够接受到消息，再将消息交给它的MessageListener处理消息
      *
      * @param order
      * @param message
@@ -39,6 +39,7 @@ public class DelayReceiver {
     @RabbitListener(queues = {DelayRabbitConfig.ORDER_QUEUE_NAME})
     public void orderDelayQueue(Order order, Message message, Channel channel) {
         log.info("###########################################");
+        log.info("【message】-{}",message.toString());
         log.info("【orderDelayQueue 监听的消息】 - 【消费时间】 - [{}]- 【订单内容】 - [{}]", new Date(), order.toString());
         if (order.getOrderStatus() == 0) {
             order.setOrderStatus(2);
